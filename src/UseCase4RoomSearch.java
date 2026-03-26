@@ -24,22 +24,6 @@ class Room {
     }
 }
 
-// Inventory (same as UC3 - state holder)
-class RoomInventory {
-
-    private Map<String, Integer> inventory = new HashMap<>();
-
-    public RoomInventory() {
-        inventory.put("Single", 5);
-        inventory.put("Double", 3);
-        inventory.put("Suite", 2);
-    }
-
-    public int getAvailability(String roomType) {
-        return inventory.getOrDefault(roomType, 0);
-    }
-}
-
 // ✅ Search Service (READ ONLY)
 class SearchService {
 
@@ -63,7 +47,7 @@ class SearchService {
         for (Room room : rooms) {
             int available = inventory.getAvailability(room.type);
 
-            // ✅ Filter only available rooms
+            // Show only available rooms
             if (available > 0) {
                 room.display(available);
             }
@@ -76,11 +60,11 @@ public class UseCase4RoomSearch {
 
     public static void main(String[] args) {
 
+        // Using RoomInventory from UC3 (not creating again)
         RoomInventory inventory = new RoomInventory();
 
         SearchService search = new SearchService(inventory);
 
-        // ✅ Only viewing (no changes to inventory)
         search.searchAvailableRooms();
     }
 }
