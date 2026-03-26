@@ -1,13 +1,10 @@
 import java.util.HashMap;
 import java.util.Map;
 
-// RoomInventory class - Single source of truth
 class RoomInventory {
 
-    // HashMap to store room type and available count
     private Map<String, Integer> inventory;
 
-    // ✅ Correct constructor
     public RoomInventory() {
         inventory = new HashMap<>();
 
@@ -36,31 +33,13 @@ class RoomInventory {
     }
 
     public void displayInventory() {
-        System.out.println("Hotel Room Inventory Status:\n");
-
-        System.out.println("Single Room:");
-        System.out.println("Beds: 1");
-        System.out.println("Size: 250 sqft");
-        System.out.println("Price per night: 1500.0");
-        System.out.println("Available Rooms: " + getAvailability("Single"));
-        System.out.println();
-
-        System.out.println("Double Room:");
-        System.out.println("Beds: 2");
-        System.out.println("Size: 400 sqft");
-        System.out.println("Price per night: 2500.0");
-        System.out.println("Available Rooms: " + getAvailability("Double"));
-        System.out.println();
-
-        System.out.println("Suite Room:");
-        System.out.println("Beds: 3");
-        System.out.println("Size: 750 sqft");
-        System.out.println("Price per night: 5000.0");
-        System.out.println("Available Rooms: " + getAvailability("Suite"));
+        System.out.println("Hotel Room Inventory Status:");
+        System.out.println("Single: " + getAvailability("Single"));
+        System.out.println("Double: " + getAvailability("Double"));
+        System.out.println("Suite: " + getAvailability("Suite"));
     }
 }
 
-// Main class
 public class UseCase3RoomInventory {
 
     public static void main(String[] args) {
@@ -69,20 +48,8 @@ public class UseCase3RoomInventory {
 
         inventory.displayInventory();
 
-        System.out.println("\nBooking a Single Room...");
-        if (inventory.bookRoom("Single")) {
-            System.out.println("Booking successful!");
-        } else {
-            System.out.println("Booking failed!");
-        }
+        inventory.bookRoom("Single");
 
-        System.out.println("\nUpdated Inventory:");
-        inventory.displayInventory();
-
-        System.out.println("\nCancelling a Single Room...");
-        inventory.cancelRoom("Single");
-
-        System.out.println("\nFinal Inventory:");
         inventory.displayInventory();
     }
 }
